@@ -35,7 +35,7 @@ public class UserServiceClient {
     }
 
     public UserDTO createUser(UserDTO userDTO){
-        String url = "http://localhost:9022/users";
+        String url = "http://localhost:9022/users/create";
         UserDTO createdUser = restTemplate.postForObject(url, userDTO, UserDTO.class);
         return createdUser;
     }

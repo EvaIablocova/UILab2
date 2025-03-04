@@ -31,18 +31,21 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public UserDTO createUser(@RequestBody UserDTO userDTO) {
-        return userServiceClient.createUser(userDTO);
+    public String createUser(@RequestBody UserDTO userDTO) {
+        userServiceClient.createUser(userDTO);
+        return "redirect:/users";
     }
 
     @PutMapping("/{id}")
-    public void updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+    public String updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         userServiceClient.updateUser(id, userDTO);
+        return "redirect:/users";
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public String deleteUser(@PathVariable Long id) {
         userServiceClient.deleteUser(id);
+        return "redirect:/users";
     }
 
 }

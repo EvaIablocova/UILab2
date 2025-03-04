@@ -26,23 +26,27 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDTO getUserById(@PathVariable Long id) {
-        return userServiceClient.getUserById(id);
+    public String getUserById(@PathVariable Long id, Model model) {
+
+        UserDTO users = userServiceClient.getUserById(id);
+        model.addAttribute("users", users);
+
+        return "users";
     }
 
     @PostMapping("/create")
     public String createUser(@RequestBody UserDTO userDTO) {
-        userServiceClient.createUser(userDTO);
+            userServiceClient.createUser(userDTO);
         return "redirect:/users";
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public String updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         userServiceClient.updateUser(id, userDTO);
         return "redirect:/users";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id) {
         userServiceClient.deleteUser(id);
         return "redirect:/users";

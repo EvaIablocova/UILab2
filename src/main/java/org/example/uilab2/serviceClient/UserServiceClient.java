@@ -41,7 +41,7 @@ public class UserServiceClient {
     }
 
     public void updateUser(Long id, UserDTO userDTO) {
-        String url = "http://localhost:9022/users/" + id;
+        String url = "http://localhost:9022/users/update" + id;
         restTemplate.put(url, userDTO);
     }
 
